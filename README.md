@@ -1,2 +1,2 @@
-# Learing-cocos2d-x
-The learing journal about cocos2d-x.
+# Learning-cocos2d-x
+The learning journal about cocos2d-x.
