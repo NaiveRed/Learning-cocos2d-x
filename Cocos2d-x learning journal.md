@@ -13,6 +13,7 @@ cocos2d-x learning journal
 5. [計時器](#scheduler)
 6. [位置](#position)
 7. [座標系](#coordinates)
+
 - - -
 
 <h2 id="environment">環境準備</h2>
