@@ -1,53 +1,148 @@
 
 cocos2d-x learning journal
 =========================
-**NOTE**:é€™åªæ˜¯æˆ‘å­¸ç¿’cocos2d-xçš„ç­†è¨˜é †ä¾¿å­¸å­¸markdownï¼Œå› æ­¤æ­£ç¢ºæ€§ä¸æ•¢ä¿è­‰ï¼Œ
-ç¶²è·¯ä¸Šæœ‰æ›´å¥½çš„æ•™å­¸ç¶²ç«™!
+**NOTE**:³o¥u¬O§Ú¾Ç²ßCocos2d-xªºµ§°O¶¶«K¾Ç¾ÇMarkdown¡A¤j¦h¬O¦Û¤vªº²z¸Ñ¡A¦]¦¹¥¿½T©Ê¤£´±«OÃÒ¡A¦pªG¦³¿ù·Ğ½Ğ§iª¾¡A
+ºô¸ô¤W¦³§ó¦nªº±Ğ¾Çºô¯¸!
 
 - - -
 
-1. [ç’°å¢ƒæº–å‚™](#environment)
-2. [å°ˆæ¡ˆå‰µå»º](#creatNew)
+1. [Àô¹Ò·Ç³Æ](#environment)
+2. [±M®×³Ğ«Ø](#creatNew)
 3. [Hello World](#helloWorld)
-
+4. [®Ö¤ß·§©À](#coreClasses)
+5. [­p®É¾¹](#scheduler)
+6. [¦ì¸m](#position)
+7. [®y¼Ğ¨t](#coordinates)
 - - -
 
-<h2 id="environment">ç’°å¢ƒæº–å‚™</h2>
+<h2 id="environment">Àô¹Ò·Ç³Æ</h2>
 
-å…ˆå»[å®˜ç¶²](http://www.cocos2d-x.org/download)ä¸‹è¼‰cocos2d-x (æˆ‘ç”¨çš„æ˜¯v3.5)
-ï¼Œä¸‹è¼‰è§£å£“ç¸®å¾Œå¯ä»¥çœ‹åˆ°è£¡é¢æœ‰å€‹ **setup.py**ï¼Œéœ€è¦å»ä¸‹è¼‰pythonä¾†å®Œæˆå®‰è£
-ï¼Œå…ˆåˆ°python[å®˜ç¶²](https://www.python.org/downloads/)ä¸‹è¼‰ç¬¦åˆä½ é›»è…¦ç‰ˆæœ¬çš„python2.7+(ä¸ç¢ºå®š3.xçš„è¡Œä¸è¡Œ)ï¼Œå®‰è£å¥½å¾Œå»è¨­å®šç³»çµ±è®Šæ•¸æˆ–æ˜¯command cdåˆ°pythonçš„è³‡æ–™å¤¾ï¼Œæ¥è‘—å®‰è£cocos2d-xï¼Œ
-åœ¨commandè¼¸å…¥:
+¥ı¥h[©xºô](http://www.cocos2d-x.org/download)¤U¸ücocos2d-x (§Ú¥Îªº¬Ov3.5)
+¡A¤U¸ü¸ÑÀ£ÁY«á¥i¥H¬İ¨ì¸Ì­±¦³­Ó **setup.py**¡A»İ­n¥h¤U¸üpython¨Ó§¹¦¨¦w¸Ë
+¡A¥ı¨ìpython[©xºô](https://www.python.org/downloads/)¤U¸ü²Å¦X§A¹q¸£ª©¥»ªºpython2.7+(¤£½T©w3.xªº¦æ¤£¦æ)¡A¦w¸Ë¦n«á¥h³]©w¨t²ÎÅÜ¼Æ©Î¬Ocommand cd¨ìpythonªº¸ê®Æ§¨¡A±µµÛ¦w¸Ëcocos2d-x¡A
+¦bcommand¿é¤J:
 
-`python setup.py`  (æœƒå› ä½ setup.pyçš„ä½ç½®è€Œæœ‰å·®ç•°ï¼Œå¯å°‡setup.pyç›´æ¥æ”¹æˆæª”æ¡ˆè·¯å¾‘)
+`python setup.py`  (·|¦]§Asetup.pyªº¦ì¸m¦Ó¦³®t²§¡A¥i±Nsetup.pyª½±µ§ï¦¨ÀÉ®×¸ô®|)
 
-éç¨‹æœƒæœ‰  NDK_ROOTã€ANDROID_SDK_ROOTã€ANT_ROOT é€™ä¸‰å€‹æ˜¯è·ŸAndroidæœ‰é—œçš„ï¼Œæš«ä¸”ç„¡è¦–ä»–æŒ‰Enterå°±å¥½ï¼Œå®Œæˆå®‰è£ï¼Œå®ƒä¹Ÿæœƒå¹«ä½ è¨­ç½®å¥½cocos2d-xçš„ç³»çµ±è®Šæ•¸ã€‚
+¹Lµ{·|¦³  NDK_ROOT¡BANDROID_SDK_ROOT¡BANT_ROOT ³o¤T­Ó¬O¸òAndroid¦³Ãöªº¡A¼È¥BµLµø¥L«öEnter´N¦n¡A§¹¦¨¦w¸Ë¡A¥¦¤]·|À°§A³]¸m¦ncocos2d-xªº¨t²ÎÅÜ¼Æ¡C
 
-<h2 id="creatNew">å°ˆæ¡ˆå‰µå»º</h2>
+<h2 id="creatNew">±M®×³Ğ«Ø</h2>
 
-åœ¨commandä¸Šè¼¸å…¥cocoså¯ä»¥çœ‹åˆ°ç›¸é—œæŒ‡ä»¤ï¼Œç¾åœ¨å†è¼¸å…¥
-`cocos new -h` (çœ‹å‰µå»ºèªªæ˜)ï¼Œä¾ç…§èªªæ˜åœ¨æ¡Œé¢å‰µä¸€å€‹æ–°çš„å°ˆæ¡ˆ:
+¦bcommand¤W¿é¤Jcocos¥i¥H¬İ¨ì¬ÛÃö«ü¥O¡A²{¦b¦A¿é¤J
+`cocos new -h` (¬İ³Ğ«Ø»¡©ú)¡A¨Ì·Ó»¡©ú¦b®à­±³Ğ¤@­Ó·sªº±M®×:
 
 `cocos new -l cpp -d C:\Users\User\Desktop MySimpleTest` 
 
-æ‰“é–‹è³‡æ–™å¤¾å¯ä»¥çœ‹è¦‹
-Win 32ã€iOSã€Androidã€win8 å’Œ Linux 5ç¨®å°ˆæ¡ˆå¹³å°(è©³ç´°èªªæ˜å¯è‡ªè¡Œæœå°‹)
+¥´¶}¸ê®Æ§¨¥i¥H¬İ¨£
+Win 32¡BiOS¡BAndroid¡Bwin8 ©M Linux 5ºØ±M®×¥­¥x(¸Ô²Ó»¡©ú¥i¦Û¦æ·j´M)
 
-æˆ‘å€‘é¸win32çš„ç„¶å¾Œç”¨Visual Studio 2013 é–‹å•Ÿå°ˆæ¡ˆæª”ã€‚
+§Ú­Ì¿ïwin32ªºµM«á¥ÎVisual Studio 2013 ¶}±Ò±M®×ÀÉ¡C
 
 <h2 id="helloWorld">Hello World</h2>
 [gHelloWorld]: resource/HelloWorld.jpg
-åœ¨å°ˆæ¡ˆæª”å…§å¯ä»¥çœ‹è¦‹æœ‰
-AppDelegate.* ç‚ºç¨‹å¼å¼•æ“å•Ÿå‹•çš„codeï¼Œå†ç”±mainè£¡ä¾†å‘¼å«run() function
+¦b±M®×ÀÉ¤º¥i¥H¬İ¨£¦³
+AppDelegate.* ¬°µ{¦¡¤ŞÀº±Ò°Êªºcode¡A¦A¥Ñmain¸Ì¨Ó©I¥srun() function
 `Application::getInstance()->run()`
 
-HelloWorldScene.cppå…§
-`bool HelloWorld::init()` æœ‰è©³ç´°çš„èªªæ˜è¨»è§£
-ï¼Œæ¥è‘—build and runå³å¯ã€‚
+HelloWorldScene.cpp¤º
+`bool HelloWorld::init()` ¦³¸Ô²Óªº»¡©úµù¸Ñ
+¡A±µµÛbuild and run§Y¥i¡C
 
-è¼¸å‡ºçµæœ:
-![è¼¸å‡ºçµæœ][gHelloWorld]
-    
+¿é¥Xµ²ªG:
+![¿é¥Xµ²ªG][gHelloWorld]
+
+<h2 id="coreClasses">®Ö¤ß·§©À</h2>
+
+Cocos2d-x±Ä¥Î¾ğª¬µ²ºc¨ÓºŞ²zScene,Layer,Sprite,Menu...µ¥ª«¥ó(Node)¡A
+´N¤£¸Ô²Ó¤¶²ĞDirector,Scene,Layer...µ¥classªº¬[ºc©MÃş§O¹Ï¤F¡A¸Ô²Ó¥i±q[³o¸Ì](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)¬d¸ß!
+
+<h2 id="scheduler">­p®É¾¹</h2>
+
+¤j­P¤W´N¬O¥i¥H¹ïSpriteµ¥ª«¥ó¨Ó¶i¦æ±Æµ{
+
+¥i¥H³z¹LAccessª«¥óªºTag `label->setTag(42)` `this->getChildByTag(42)`¡AµM«á¨Ï¥Î
+
+`void scheduleUpdate(void)` ©Î `void schedule(SEL_SCHEDULE selector,float interval)` ¨Ó¶i¦æ¨C¦¸ªº§ó·s(²q´ú:¸òfps¦³Ãö)
+¡A¦b±ı¶i¦æ¨ê·sªºª«¥ó¤¤·s¼W`update(float dt)` function¡A°O±o¤£¦A¨Ï¥Î±Æµ{®É»İ­n°±¤î±Æµ{¡A¥i©I¥s`unscheduleUpdate()`´N¬O°±¤î­è­è·s¼Wªºupdate function¡A
+¦pªG¬O­n°±¤î¨ä¥Lªº¨ç¦¡¥i¥H¥Îunschedule©ÎunscheduleAllSelectors°±¤î¡C
+
+<h2 id="position">¦ì¸m</h2>
+
+¬°¤F¨Ï¥Ø¼Ğ§óºë·Çªº©ñ¸m¦b·Q­nªº¦ì¸m¤W¡A´N¦³¤FÁãÂI(Anchor Point)³o­ÓªF¦è¡A¥i¥H·í§@Node¤Î¨ä­l¥Íª«¥óªº©w¦ìÂI¡A¦ÓAnchor Point¬O¬Û¹ï©ópositionªº¤ñ¨Ò¡A
+¦p: `Vec2(0.5,0.5)` ´N¬O¦¹¹ï¶Hªº¤¤¶¡¡C
+
+p.s ¥i³z¹L§ó§ïÁãÂI©M³]©w¦ì¸m¡A·|§ó¥[¤F¸Ñ¡C
+
+<h2 id="coordinates">®y¼Ğ¨t</h2>
+
+[CartesianCoordinates]:resource/CartesianCoordinates.png
+
+Cocos2d-xªº®y¼Ğ¨t²Î±Ä¥Î²Ã¥dº¸®y¼Ğ¨t¤¤ªº**¥k¤â®y¼Ğ¨t²Î**¡A¥ª¤U¨¤¬°­ìÂI¡A¦V¥k¬°x¥¿¡A¦V¤W¬°y¥¿¡Az¶b«ü¦V¿Ã¹õ¥~¡C
+
+²Ã¥dº¸®y¼Ğ¨t(¥ª¤â/¥k¤â):
+
+![²Ã¥dº¸®y¼Ğ¨t][CartesianCoordinates]
+
+¥H¤U¤¶²Ğ´XºØ®y¼Ğ¨t:
+
+* **OpenGL ®y¼Ğ**
+
+¨Ï¥Î¥k¤â®y¼Ğ¨t¡C(Cocos2d-x©³¼h±Ä¥ÎOpenGLÃ¸»s)
+
+* **UI ®y¼Ğ**
+
+¤]ºÙ¬°«Ì¹õ®y¼Ğ¨t²Î¡A­ìÂI¦b¥ª¤W¨¤¡A¦V¥k¬°x¥¿¡A¦V¤U¬°y¥¿¡A
+¦bÄ²±±¨Æ¥ó©Î¬Y¨Ç®É­Ô·|¥Î¨ì¡C
+
+* **¥@¬É®y¼Ğ©M¬Û¹ï®y¼Ğ**
+
+¤]¦³¬İ¨ì¬Û¹ï®y¼Ğ¤S¥s°µ¥»¦a®y¼Ğ¡B¼Ò«¬®y¼Ğ¡A¤j­P¤Wªº²z¸Ñ¬O¥@¬É®y¼Ğ¬°µ´¹ï¦ì¸m¡A¦Ó¬Û¹ï®y¼Ğ«h¬O¥H¥t¤@Nodeª«¥ó¬°°ò·Ç¡A
+¨âªÌ¤¤¤S¤À¬°¬O¤£¬O¥HAnchorPoint¬°°ò·Ç¡A©È§Ú»{ª¾¦³¿ù¡A¸Ô²Ó¥i¦A¥hgoogle¡C
+
+**Âà´«ªº¤èªk**
+
+³o³¡¤Àªá¤F¤£¤Ö®É¶¡¬İ¨Ò¤l©M²z¸Ñ¡AÁöµMÁÙ¦³ÂI¤£ª¾©Ò¥H...
+ª½±µ¥Î¨Ò¤l¨Ó»¡©ú:
+
+©xºô¨Ò¤l:
+
+	Sprite *sprite1 = Sprite::create("CloseNormal.png");
+	sprite1->setPosition(Vec2(20,40));
+	sprite1->setAnchorPoint(Vec2(0,0));
+	this->addChild(sprite1);
+
+	Sprite *sprite2 = Sprite::create("CloseNormal.png");
+	sprite2->setPosition(Vec2(-5,-20));
+	sprite2->setAnchorPoint(Vec2(1,1));
+	this->addChild(sprite2);
+
+	Vec2 point1 = sprite1->convertToNodeSpace(sprite2->getPosition());
+	Vec2 point2 = sprite1->convertToWorldSpace(sprite2->getPosition());
+	Vec2 point3 = sprite1->convertToNodeSpaceAR(sprite2->getPosition());
+	Vec2 point4 = sprite1->convertToWorldSpaceAR(sprite2->getPosition());
+
+	log("position = (%f,%f)",point1.x,point1.y);
+	log("position = (%f,%f)",point2.x,point2.y);
+	log("position = (%f,%f)",point3.x,point3.y);
+	log("position = (%f,%f)",point4.x,point4.y);
+	
+µ²ªG:
+	
+	position = (-25.000000,-60.000000)
+	position = (15.000000,20.000000)
+	position = (-25.000000,-60.000000)
+	position = (15.000000,20.000000)
+	
+convertToNodeSpace: ±N¥@¬É®y¼ĞÂà¬°¬Û¹ï®y¼Ğ¡AÂà´«¤è¦¡: **¥Hsprite1ªº¥ª¤U¨¤¬°­ìÂI**¡A­«·s­pºâ·sªº®y¼Ğ¡C
+
+convertToWorldSpace: ±Nsprite2ªº¦ì¸m®y¼ĞÂà¬°¥@¬É®y¼Ğ¡AÂà´«¤è¦¡: sprite1ªº¦ì¸m¤£ÅÜ¡A¥@¬É®y¼Ğªº®y¼Ğ¶b¤]¤£ÅÜ¡A
+**¥Hsprite1ªº¥ª¤U¨¤³»ÂI¦A«Ø¥ß¤@­Ó·sªº®y¼Ğ¨t(¥»¦a®y¼Ğ)¡A±Nsprite2°²³]©ñ¸m¨ì·s«Øªº³o­Ó®y¼Ğ¨t(®y¼Ğ¤£ÅÜ)¡AµM«á¥H­ì¨Óªº¥@¬É®y¼Ğ¬°°Ñ¦Ò­«·s­pºâsprite2ªº¦ì¸m**¡C
+
+convertToNodeSpaceAR: ±N¥@¬É®y¼ĞÂà¬°¬Û¹ï®y¼Ğ¡AÂà´«¤è¦¡: **¥Hsprite1ªºÁãÂI¬°­ìÂI**¡A­«·s­pºâ·sªº®y¼Ğ¡C
+
+convertToWorldSpaceAR: ±Nsprite2ªº¦ì¸m®y¼ĞÂà¬°¥@¬É®y¼Ğ¡AÂà´«¤è¦¡: sprite1ªº¦ì¸m¤£ÅÜ¡A¥@¬É®y¼Ğªº®y¼Ğ¶b¤]¤£ÅÜ¡A
+**¥Hsprite1ªºÁãÂI¦A«Ø¥ß¤@­Ó·sªº®y¼Ğ¨t(¥»¦a®y¼Ğ)¡A±Nsprite2°²³]©ñ¸m¨ì·s«Øªº³o­Ó®y¼Ğ¨t(®y¼Ğ¤£ÅÜ)¡AµM«á¥H­ì¨Óªº¥@¬É®y¼Ğ¬°°Ñ¦Ò­«·s­pºâsprite2ªº¦ì¸m**¡C
+   
 
 
 
