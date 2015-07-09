@@ -1,8 +1,8 @@
 
 cocos2d-x learning journal
 =========================
-**NOTE**:這只是我學習Cocos2d-x的筆記順便學學Markdown，大多是自己的理解，因此正確性不敢保證，如果有錯煩請告知，
-網路上有更好的教學網站!
+**NOTE**:這只是我學習Cocos2d-x的紀錄順便學學Markdown，大多是自己的理解和筆記，因此正確性不敢保證，網路上有更好的教學網站!如果有錯煩請告知。
+
 
 - - -
 
@@ -253,7 +253,11 @@ e.g.
 	ttf.outlineSize = 4;
 	auto label2(Label::createWithTTF(ttf, "HelloWorld!"));
 
-此外還有 **createWithCharMap** 和 **createWithBMFont**  (可查閱document或看CCLabel.h內的註解)。
+此外還有 **createWithCharMap** 和 **createWithBMFont**  (詳細可查閱document或看CCLabel.h內的註解)。
+
+createWithCharMap的字型資源來自*.png(還有其他種)，還須設定每個字元的寬高。
+
+而createWithBMFont則是使用\*.fnt，要先添加好字體檔案，包含一個圖片集檔案(\*.png)和字型座標檔案(\*.fnt)，檔案名稱須相同。
 
 接著Label有一些效果:
 
