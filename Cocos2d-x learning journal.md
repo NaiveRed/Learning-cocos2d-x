@@ -13,6 +13,9 @@ cocos2d-x learning journal
 5. [計時器](#scheduler)
 6. [位置](#position)
 7. [座標系](#coordinates)
+8. [Log](#log)
+9. [字串](#string)
+10. [標籤](#Label)
 
 - - -
 
@@ -144,7 +147,131 @@ convertToNodeSpaceAR: 將世界座標轉為相對座標，轉換方式: **以sprite1的錨點為原點*
 convertToWorldSpaceAR: 將sprite2的位置座標轉為世界座標，轉換方式: sprite1的位置不變，世界座標的座標軸也不變，
 **以sprite1的錨點再建立一個新的座標系(本地座標)，將sprite2假設放置到新建的這個座標系(座標不變)，然後以原來的世界座標為參考重新計算sprite2的位置**。
    
+<h2 id="log">Log</h2>
+[vsLog]:resource/logPosition.jpg
+可以在debug的時候使用，滿方便的，應該是可以輸出到console上，不過還不曉得怎用。
 
+`log("%s update %d ",__TIME__, num++);`
 
+輸出結果:
 
+![vs-log][vsLog]
 
+<h2 id="string">字串</h2>
+
+除了C中使用的`char *` 和 C++ 的`std::string`，在cocos2d-x裡還有一種`cocos2d-x::__String`。
+
+假設使用`std::string *str`就要搭配new來使用，不使用時須delete(或是利用smart pointer)。
+
+cocos2d-x::__String可以利用`create`和`createWithFormat`，
+則不用管理記憶體的釋放，e.g.
+
+	__String *str1(__String::create("HelloWorld!"));
+	__String *str2(__String::createWithFormat("%d %s",123,"HelloWorld"));
+	
+而在這三種字串中也有互相轉換的function，就不再詳細說明了。
+
+<h2 id="Label">標籤</h2>
+
+在遊戲中如要顯示文字可以利用標籤，也就是Label，像是[HelloWorld](#helloWorld)中的圖片內，上方一行HelloWorld。
+
+在cocos2d-x 2內有LabelTTF,LabelAtlas,LabelBMFont三種class，這裡介紹cocos2d-x 3.x中新的class Label。
+
+* **系統原生字體**
+
+		Label* Label::createWithSystemFont(
+		const std::string& text,                                    //字串內容
+		const std::string& font, 									//字體
+		float fontSize, 											//字體大小				
+		const Size& dimensions /* = Size::ZERO */,  				//Label在螢幕上佔的大小
+		TextHAlignment hAlignment /* = TextHAlignment::LEFT */, 	//水平對齊方式
+		TextVAlignment vAlignment /* = TextVAlignment::TOP */		//垂直對齊方式
+		)
+		
+* **TTF**
+
+	正常創建:
+
+		Label* Label::createWithTTF(
+		const std::string& text, 
+		const std::string& fontFile, 								//字體檔案(*.ttf)
+		float fontSize, 
+		const Size& dimensions /* = Size::ZERO */, 
+		TextHAlignment hAlignment /* = TextHAlignment::LEFT */, 
+		TextVAlignment vAlignment /* = TextVAlignment::TOP */
+		)
+
+	使用TTFConfig:
+		
+		Label* Label::createWithTTF(
+		const TTFConfig& ttfConfig, 								//TTFConfig		
+		const std::string& text, 
+		TextHAlignment alignment /* = TextHAlignment::CENTER */, 	
+		int maxLineWidth /* = 0 */									//最大行寬，可用來設定自動換行
+		)
+
+	TTFConfig:
+		
+		typedef struct _ttfConfig
+		{
+		std::string fontFilePath;									//字體檔案
+		int fontSize;											
+
+		GlyphCollection glyphs;										//字型庫(字符集)
+		const char *customGlyphs;									//自訂字型庫
+		
+		bool distanceFieldEnabled;									//理解為 字體是否緊湊
+		int outlineSize;											//字型描邊
+
+		_ttfConfig(const char* filePath = "",
+		int size = 12, 
+		const GlyphCollection& glyphCollection = GlyphCollection::DYNAMIC,
+		const char *customGlyphCollection = nullptr,
+		bool useDistanceField = false,
+		int outline = 0)
+		:
+		fontFilePath(filePath),
+		fontSize(size),
+		glyphs(glyphCollection),
+		customGlyphs(customGlyphCollection),
+		distanceFieldEnabled(useDistanceField),
+		outlineSize(outline)
+		
+		{
+			if(outline > 0)
+			{
+				distanceFieldEnabled = false;
+			}
+		}
+		}TTFConfig;
+				
+e.g.
+	
+	auto label1(Label::createWithTTF("HelloWorld!", "fonts/Marker Felt.ttf", 60));
+	
+	TTFConfig ttf("fonts/Marker Felt.ttf", 60);
+	ttf.outlineSize = 4;
+	auto label2(Label::createWithTTF(ttf, "HelloWorld!"));
+
+此外還有 **createWithCharMap** 和 **createWithBMFont**  (可查閱document或看CCLabel.h內的註解)。
+
+接著Label有一些效果:
+
+shadow(陰影)、Glow(螢光)、OutLine(描邊)
+
+p.s. OutLine 與 Glow 貌似會起衝突
+
+e.g.:
+
+	label->enableOutline(Color4B::RED, 4);								//第一個參數為邊的顏色，第二個為大小
+	label->enableShadow(Color4B(91, 0, 174, 128), Size(3, -10));       	//第一個參數為顏色，第二個為陰影的相對位置(實際更改一次就可以明白了)
+	label->enableGlow(Color3B::GREEN);									//螢光為綠色	
+
+	label->disableEffect();												//取消效果
+
+這裡稍微補充一下常常用到的Color3B,color4B就差在有沒有透明度，RGBA，A:255為完全不透明
+
+Label還有許多的function可使用例如`label->setTextColor(Color4B(255, 0, 0,128))`
+
+可以從[這裡](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/db/de4/classcocos2d_1_1_label.html)得到更多資訊!
+		
