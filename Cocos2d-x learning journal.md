@@ -3,7 +3,7 @@ cocos2d-x learning journal
 =========================
 **NOTE**:這只是我學習Cocos2d-x的紀錄順便學學Markdown，大多是自己的理解和筆記，因此正確性不敢保證，網路上有更好的教學網站!如果有錯煩請告知。
 
-
+資源 : [API文件](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)、[官網文件](http://www.cocos2d-x.org/docs/README)
 - - -
 
 1. [環境準備](#environment)
@@ -15,8 +15,8 @@ cocos2d-x learning journal
 7. [座標系](#coordinates)
 8. [Log](#log)
 9. [字串](#string)
-10. [標籤](#Label)
-
+10. [標籤](#label)
+11. [選單](#menu)
 - - -
 
 <h2 id="environment">環境準備</h2>
@@ -98,6 +98,8 @@ Cocos2d-x的座標系統採用笛卡爾座標系中的**右手座標系統**，左下角為原點，向右為x正
 也稱為屏幕座標系統，原點在左上角，向右為x正，向下為y正，
 在觸控事件或某些時候會用到。
 
+OpenGL 和 UI 座標也有轉換的 function。
+
 * **世界座標和相對座標**
 
 也有看到相對座標又叫做本地座標、模型座標，大致上的理解是世界座標為絕對位置，而相對座標則是以另一Node物件為基準，
@@ -171,7 +173,7 @@ cocos2d-x::__String可以利用`create`和`createWithFormat`，
 	
 而在這三種字串中也有互相轉換的function，就不再詳細說明了。
 
-<h2 id="Label">標籤</h2>
+<h2 id="label">標籤</h2>
 
 在遊戲中如要顯示文字可以利用標籤，也就是Label，像是[HelloWorld](#helloWorld)中的圖片內，上方一行HelloWorld。
 
@@ -278,4 +280,89 @@ e.g.:
 Label還有許多的function可使用例如`label->setTextColor(Color4B(255, 0, 0,128))`
 
 可以從[這裡](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/db/de4/classcocos2d_1_1_label.html)得到更多資訊!
+
+
+<h2 id="menu">選單</h2>
+[menuUml]:resource/menuUml.png
+
+![menu][menuUml]
+
+先講一下目前的理解:
+
+「Menu 繼承了 Layer，而選單中又包含了選單項目(Node <- MenuItem)，所以操作上，要把 MenuItem 加進 Menu，Menu 再加進 父節點。
+
+一個場景包含多個層，而層上又有許多東西(e.g. Sprite、Menu、Label...) ，都是Node，然後這裡的關係大概是 MenuItem 加進 Menu，Menu 再加進 Layer。」
 		
+[官網文件](http://www.cocos2d-x.org/docs/manual/framework/native/v3/menu/zh)也有介紹。
+
+* **文字選單:**
+
+MenuItemFont、MenuItemAtlasFont、MenuItemLabel 裡面的參數可從程式碼註解或[API文件](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)得知。
+
+舉最簡單的例子:
+	
+	MenuItemFont* onItem = MenuItemFont::create("on", CC_CALLBACK_1(HelloWorld::menuItemcallBack1,this));
+	//Menu *menu(Menu::create(onItem, NULL));//記得NULL!!
+	//menu->setPosition(Vec2::ZERO);
+	
+	menu->addChild(onItem);
+	this->addChild(menu,1);
+
+在創建MenuItem時須設定點選後發生的事，也就是參數列中的callback function，在這裡利用macro: `CC_CALLBACK_1` 中產生 ，`HelloWorld::menuItemcallBack1`則是所用到的function，
+當然，我們需要在HelloWorld中寫一個menuItemcallBack1的function:
+	
+	void menuItemcallBack1(cocos2d::Ref* pSender)
+	{
+	//do something...
+	}
+	
+至於CC\_CALLBACK\_1的詳細用法和其餘(CC\_CALLBACK\_0 1 2 3)看了很多講解還是不太懂，猜測是跟參數數量有關，
+後面如果了解了再說明。
+
+p.s 官網文件中使用的方法是Lambda運算式。
+
+* **精靈選單**(Sprite)
+
+精靈選單的選單項目類別是MenuItemSprite，其中還有一個衍生類別為MenuItemImage(圖片選單)。
+
+使用MenuItemSprite時，要先建立欲使用的精靈(e.g. `Sprite *normalSprite = Sprite::create("menu/normal.png")`)
+
+e.g.
+
+	MenuItemSprite * MenuItemSprite::create(
+	Node *normalSprite,					//項目正常時的精靈
+	Node *selectedSprite,				//項目被選擇時的精靈
+	Node *disabledSprite,				//項目禁用時的精靈，可省略
+	const ccMenuCallback& callback		//callback 
+	)
+	
+	//MenuItemImage則是用圖片創建
+	MenuItemImage * MenuItemImage::create(
+	const std::string& normalImage,
+	const std::string& selectedImage,
+	const std::string& disabledImage
+	)
+	
+* **切換選單**(Toggle)
+
+開關選單的類別是 MenuItemToggle ，可以進行多種狀態的切換。(例如:聲音的開關)
+
+其中一種建立方式:
+
+	MenuItemToggle * MenuItemToggle::createWithCallback(
+	const ccMenuCallback &callback				//欲操作的callback 
+	, MenuItem* item,							//進行切換的MenuItem
+	...
+	)
+
+	//官網範例
+	auto item6 = MenuItemToggle::createWithCallback(
+	[&](Ref*){ log("Toggle touched!");},			//lambda expression ， 我們也可以用CC_CALLBACK_1來做
+	MenuItemFont::create("On"),						//MenuItem
+    MenuItemFont::create("Off"),
+	NULL
+	);
+
+還有一些Menu的function介紹和效果可以從官網文件中學習!
+	
+p.s 關於一些可變參數(`void func(...);`)的用法可以再自行查閱。
