@@ -1,116 +1,116 @@
 
-cocos2d-x learning journal
+Cocos2d-x learning journal
 =========================
-**NOTE**:³o¥u¬O§Ú¾Ç²ßCocos2d-xªº¬ö¿ı¶¶«K¾Ç¾ÇMarkdown¡A¤j¦h¬O¦Û¤vªº²z¸Ñ©Mµ§°O¡A¦]¦¹¥¿½T©Ê¤£´±«OÃÒ¡Aºô¸ô¤W¦³§ó¦nªº±Ğ¾Çºô¯¸!¦pªG¤º®e¦³¿ùÁÙ·Ğ½Ğ§iª¾¡C
+**NOTE**:é€™åªæ˜¯æˆ‘å­¸ç¿’Cocos2d-xçš„ç´€éŒ„é †ä¾¿å­¸å­¸Markdownï¼Œå¤§å¤šæ˜¯è‡ªå·±çš„ç†è§£å’Œç­†è¨˜ï¼Œå› æ­¤æ­£ç¢ºæ€§ä¸æ•¢ä¿è­‰ï¼Œç¶²è·¯ä¸Šæœ‰æ›´å¥½çš„æ•™å­¸ç¶²ç«™!å¦‚æœå…§å®¹æœ‰éŒ¯é‚„ç…©è«‹å‘ŠçŸ¥ã€‚
 
-¸ê·½ : [API¤å¥ó](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)¡B[©xºô¤å¥ó](http://www.cocos2d-x.org/docs/README)
+è³‡æº : [APIæ–‡ä»¶](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)ã€[å®˜ç¶²æ–‡ä»¶](http://www.cocos2d-x.org/docs/README)
 - - -
 
-1. [Àô¹Ò·Ç³Æ](#environment)
-2. [±M®×³Ğ«Ø](#creatNew)
+1. [ç’°å¢ƒæº–å‚™](#environment)
+2. [å°ˆæ¡ˆå‰µå»º](#creatNew)
 3. [Hello World](#helloWorld)
-4. [®Ö¤ß·§©À](#coreClasses)
-5. [­p®É¾¹](#scheduler)
-6. [¦ì¸m](#position)
-7. [®y¼Ğ¨t](#coordinates)
+4. [æ ¸å¿ƒæ¦‚å¿µ](#coreClasses)
+5. [è¨ˆæ™‚å™¨](#scheduler)
+6. [ä½ç½®](#position)
+7. [åº§æ¨™ç³»](#coordinates)
 8. [Log](#log)
-9. [¦r¦ê](#string)
-10. [¼ĞÅÒ](#label)
-11. [¿ï³æ](#menu)
+9. [å­—ä¸²](#string)
+10. [æ¨™ç±¤](#label)
+11. [é¸å–®](#menu)
 - - -
 
-<h2 id="environment">Àô¹Ò·Ç³Æ</h2>
+<h2 id="environment">ç’°å¢ƒæº–å‚™</h2>
 
-¥ı¥h[©xºô](http://www.cocos2d-x.org/download)¤U¸ücocos2d-x (§Ú¥Îªº¬Ov3.5)
-¡A¤U¸ü¸ÑÀ£ÁY«á¥i¥H¬İ¨ì¸Ì­±¦³­Ó **setup.py**¡A»İ­n¥h¤U¸üpython¨Ó§¹¦¨¦w¸Ë
-¡A¥ı¨ìpython[©xºô](https://www.python.org/downloads/)¤U¸ü²Å¦X§A¹q¸£ª©¥»ªºpython2.7+(¤£½T©w3.xªº¦æ¤£¦æ)¡A¦w¸Ë¦n«á¥h³]©w¨t²ÎÅÜ¼Æ©Î¬Ocommand cd¨ìpythonªº¸ê®Æ§¨¡A±µµÛ¦w¸Ëcocos2d-x¡A
-¦bcommand¿é¤J:
+å…ˆå»[å®˜ç¶²](http://www.cocos2d-x.org/download)ä¸‹è¼‰cocos2d-x (æˆ‘ç”¨çš„æ˜¯v3.5)
+ï¼Œä¸‹è¼‰è§£å£“ç¸®å¾Œå¯ä»¥çœ‹åˆ°è£¡é¢æœ‰å€‹ **setup.py**ï¼Œéœ€è¦å»ä¸‹è¼‰pythonä¾†å®Œæˆå®‰è£
+ï¼Œå…ˆåˆ°python[å®˜ç¶²](https://www.python.org/downloads/)ä¸‹è¼‰ç¬¦åˆä½ é›»è…¦ç‰ˆæœ¬çš„python2.7+(ä¸ç¢ºå®š3.xçš„è¡Œä¸è¡Œ)ï¼Œå®‰è£å¥½å¾Œå»è¨­å®šç³»çµ±è®Šæ•¸æˆ–æ˜¯command cdåˆ°pythonçš„è³‡æ–™å¤¾ï¼Œæ¥è‘—å®‰è£cocos2d-xï¼Œ
+åœ¨commandè¼¸å…¥:
 
-`python setup.py`  (·|¦]§Asetup.pyªº¦ì¸m¦Ó¦³®t²§¡A¥i±Nsetup.pyª½±µ§ï¦¨ÀÉ®×¸ô®|)
+`python setup.py`  (æœƒå› ä½ setup.pyçš„ä½ç½®è€Œæœ‰å·®ç•°ï¼Œå¯å°‡setup.pyç›´æ¥æ”¹æˆæª”æ¡ˆè·¯å¾‘)
 
-¹Lµ{·|¦³  NDK_ROOT¡BANDROID_SDK_ROOT¡BANT_ROOT ³o¤T­Ó¬O¸òAndroid¦³Ãöªº¡A¼È¥BµLµø¥L«öEnter´N¦n¡A§¹¦¨¦w¸Ë¡A¥¦¤]·|À°§A³]¸m¦ncocos2d-xªº¨t²ÎÅÜ¼Æ¡C
+éç¨‹æœƒæœ‰  NDK_ROOTã€ANDROID_SDK_ROOTã€ANT_ROOT é€™ä¸‰å€‹æ˜¯è·ŸAndroidæœ‰é—œçš„ï¼Œæš«ä¸”ç„¡è¦–ä»–æŒ‰Enterå°±å¥½ï¼Œå®Œæˆå®‰è£ï¼Œå®ƒä¹Ÿæœƒå¹«ä½ è¨­ç½®å¥½cocos2d-xçš„ç³»çµ±è®Šæ•¸ã€‚
 
-<h2 id="creatNew">±M®×³Ğ«Ø</h2>
+<h2 id="creatNew">å°ˆæ¡ˆå‰µå»º</h2>
 
-¦bcommand¤W¿é¤Jcocos¥i¥H¬İ¨ì¬ÛÃö«ü¥O¡A²{¦b¦A¿é¤J
-`cocos new -h` (¬İ³Ğ«Ø»¡©ú)¡A¨Ì·Ó»¡©ú¦b®à­±³Ğ¤@­Ó·sªº±M®×:
+åœ¨commandä¸Šè¼¸å…¥cocoså¯ä»¥çœ‹åˆ°ç›¸é—œæŒ‡ä»¤ï¼Œç¾åœ¨å†è¼¸å…¥
+`cocos new -h` (çœ‹å‰µå»ºèªªæ˜)ï¼Œä¾ç…§èªªæ˜åœ¨æ¡Œé¢å‰µä¸€å€‹æ–°çš„å°ˆæ¡ˆ:
 
 `cocos new -l cpp -d C:\Users\User\Desktop MySimpleTest` 
 
-¥´¶}¸ê®Æ§¨¥i¥H¬İ¨£
-Win 32¡BiOS¡BAndroid¡Bwin8 ©M Linux 5ºØ±M®×¥­¥x(¸Ô²Ó»¡©ú¥i¦Û¦æ·j´M)
+æ‰“é–‹è³‡æ–™å¤¾å¯ä»¥çœ‹è¦‹
+Win 32ã€iOSã€Androidã€win8 å’Œ Linux 5ç¨®å°ˆæ¡ˆå¹³å°(è©³ç´°èªªæ˜å¯è‡ªè¡Œæœå°‹)
 
-§Ú­Ì¿ïwin32ªºµM«á¥ÎVisual Studio 2013 ¶}±Ò±M®×ÀÉ¡C
+æˆ‘å€‘é¸win32çš„ç„¶å¾Œç”¨Visual Studio 2013 é–‹å•Ÿå°ˆæ¡ˆæª”ã€‚
 
 <h2 id="helloWorld">Hello World</h2>
 [gHelloWorld]: resource/HelloWorld.jpg
-¦b±M®×ÀÉ¤º¥i¥H¬İ¨£¦³
-AppDelegate.* ¬°µ{¦¡¤ŞÀº±Ò°Êªºcode¡A¦A¥Ñmain¸Ì¨Ó©I¥srun() function
+åœ¨å°ˆæ¡ˆæª”å…§å¯ä»¥çœ‹è¦‹æœ‰
+AppDelegate.* ç‚ºç¨‹å¼å¼•æ“å•Ÿå‹•çš„codeï¼Œå†ç”±mainè£¡ä¾†å‘¼å«run() function
 `Application::getInstance()->run()`
 
-HelloWorldScene.cpp¤º
-`bool HelloWorld::init()` ¦³¸Ô²Óªº»¡©úµù¸Ñ
-¡A±µµÛbuild and run§Y¥i¡C
+HelloWorldScene.cppå…§
+`bool HelloWorld::init()` æœ‰è©³ç´°çš„èªªæ˜è¨»è§£
+ï¼Œæ¥è‘—build and runå³å¯ã€‚
 
-¿é¥Xµ²ªG:
-![¿é¥Xµ²ªG][gHelloWorld]
+è¼¸å‡ºçµæœ:
+![è¼¸å‡ºçµæœ][gHelloWorld]
 
-<h2 id="coreClasses">®Ö¤ß·§©À</h2>
+<h2 id="coreClasses">æ ¸å¿ƒæ¦‚å¿µ</h2>
 
-Cocos2d-x±Ä¥Î¾ğª¬µ²ºc¨ÓºŞ²zScene,Layer,Sprite,Menu...µ¥ª«¥ó(Node)¡A
-´N¤£¸Ô²Ó¤¶²ĞDirector,Scene,Layer...µ¥classªº¬[ºc©MÃş§O¹Ï¤F¡A¸Ô²Ó¥i±q[³o¸Ì](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)¬d¸ß!
+Cocos2d-xæ¡ç”¨æ¨¹ç‹€çµæ§‹ä¾†ç®¡ç†Scene,Layer,Sprite,Menu...ç­‰ç‰©ä»¶(Node)ï¼Œ
+å°±ä¸è©³ç´°ä»‹ç´¹Director,Scene,Layer...ç­‰classçš„æ¶æ§‹å’Œé¡åˆ¥åœ–äº†ï¼Œè©³ç´°å¯å¾[é€™è£¡](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)æŸ¥è©¢!
 
-<h2 id="scheduler">­p®É¾¹</h2>
+<h2 id="scheduler">è¨ˆæ™‚å™¨</h2>
 
-¤j­P¤W´N¬O¥i¥H¹ïSpriteµ¥ª«¥ó¨Ó¶i¦æ±Æµ{
+å¤§è‡´ä¸Šå°±æ˜¯å¯ä»¥å°Spriteç­‰ç‰©ä»¶ä¾†é€²è¡Œæ’ç¨‹
 
-¥i¥H³z¹LAccessª«¥óªºTag `label->setTag(42)` `this->getChildByTag(42)`¡AµM«á¨Ï¥Î
+å¯ä»¥é€éAccessç‰©ä»¶çš„Tag `label->setTag(42)` `this->getChildByTag(42)`ï¼Œç„¶å¾Œä½¿ç”¨
 
-`void scheduleUpdate(void)` ©Î `void schedule(SEL_SCHEDULE selector,float interval)` ¨Ó¶i¦æ¨C¦¸ªº§ó·s(²q´ú:¸òfps¦³Ãö)
-¡A¦b±ı¶i¦æ¨ê·sªºª«¥ó¤¤·s¼W`update(float dt)` function¡A°O±o¤£¦A¨Ï¥Î±Æµ{®É»İ­n°±¤î±Æµ{¡A¥i©I¥s`unscheduleUpdate()`´N¬O°±¤î­è­è·s¼Wªºupdate function¡A
-¦pªG¬O­n°±¤î¨ä¥Lªº¨ç¦¡¥i¥H¥Îunschedule©ÎunscheduleAllSelectors°±¤î¡C
+`void scheduleUpdate(void)` æˆ– `void schedule(SEL_SCHEDULE selector,float interval)` ä¾†é€²è¡Œæ¯æ¬¡çš„æ›´æ–°(çŒœæ¸¬:è·Ÿfpsæœ‰é—œ)
+ï¼Œåœ¨æ¬²é€²è¡Œåˆ·æ–°çš„ç‰©ä»¶ä¸­æ–°å¢`update(float dt)` functionï¼Œè¨˜å¾—ä¸å†ä½¿ç”¨æ’ç¨‹æ™‚éœ€è¦åœæ­¢æ’ç¨‹ï¼Œå¯å‘¼å«`unscheduleUpdate()`å°±æ˜¯åœæ­¢å‰›å‰›æ–°å¢çš„update functionï¼Œ
+å¦‚æœæ˜¯è¦åœæ­¢å…¶ä»–çš„å‡½å¼å¯ä»¥ç”¨unscheduleæˆ–unscheduleAllSelectorsåœæ­¢ã€‚
 
-<h2 id="position">¦ì¸m</h2>
+<h2 id="position">ä½ç½®</h2>
 
-¬°¤F¨Ï¥Ø¼Ğ§óºë·Çªº©ñ¸m¦b·Q­nªº¦ì¸m¤W¡A´N¦³¤FÁãÂI(Anchor Point)³o­ÓªF¦è¡A¥i¥H·í§@Node¤Î¨ä­l¥Íª«¥óªº©w¦ìÂI¡A¦ÓAnchor Point¬O¬Û¹ï©ópositionªº¤ñ¨Ò¡A
-¦p: `Vec2(0.5,0.5)` ´N¬O¦¹¹ï¶Hªº¤¤¶¡¡C
+ç‚ºäº†ä½¿ç›®æ¨™æ›´ç²¾æº–çš„æ”¾ç½®åœ¨æƒ³è¦çš„ä½ç½®ä¸Šï¼Œå°±æœ‰äº†éŒ¨é»(Anchor Point)é€™å€‹æ±è¥¿ï¼Œå¯ä»¥ç•¶ä½œNodeåŠå…¶è¡ç”Ÿç‰©ä»¶çš„å®šä½é»ï¼Œè€ŒAnchor Pointæ˜¯ç›¸å°æ–¼positionçš„æ¯”ä¾‹ï¼Œ
+å¦‚: `Vec2(0.5,0.5)` å°±æ˜¯æ­¤å°è±¡çš„ä¸­é–“ã€‚
 
-p.s ¥i³z¹L§ó§ïÁãÂI©M³]©w¦ì¸m¡A·|§ó¥[¤F¸Ñ¡C
+p.s å¯é€éæ›´æ”¹éŒ¨é»å’Œè¨­å®šä½ç½®ï¼Œæœƒæ›´åŠ äº†è§£ã€‚
 
-<h2 id="coordinates">®y¼Ğ¨t</h2>
+<h2 id="coordinates">åº§æ¨™ç³»</h2>
 
 [CartesianCoordinates]:resource/CartesianCoordinates.png
 
-Cocos2d-xªº®y¼Ğ¨t²Î±Ä¥Î²Ã¥dº¸®y¼Ğ¨t¤¤ªº**¥k¤â®y¼Ğ¨t²Î**¡A¥ª¤U¨¤¬°­ìÂI¡A¦V¥k¬°x¥¿¡A¦V¤W¬°y¥¿¡Az¶b«ü¦V¿Ã¹õ¥~¡C
+Cocos2d-xçš„åº§æ¨™ç³»çµ±æ¡ç”¨ç¬›å¡çˆ¾åº§æ¨™ç³»ä¸­çš„**å³æ‰‹åº§æ¨™ç³»çµ±**ï¼Œå·¦ä¸‹è§’ç‚ºåŸé»ï¼Œå‘å³ç‚ºxæ­£ï¼Œå‘ä¸Šç‚ºyæ­£ï¼Œzè»¸æŒ‡å‘è¢å¹•å¤–ã€‚
 
-²Ã¥dº¸®y¼Ğ¨t(¥ª¤â/¥k¤â):
+ç¬›å¡çˆ¾åº§æ¨™ç³»(å·¦æ‰‹/å³æ‰‹):
 
-![²Ã¥dº¸®y¼Ğ¨t][CartesianCoordinates]
+![ç¬›å¡çˆ¾åº§æ¨™ç³»][CartesianCoordinates]
 
-¥H¤U¤¶²Ğ´XºØ®y¼Ğ¨t:
+ä»¥ä¸‹ä»‹ç´¹å¹¾ç¨®åº§æ¨™ç³»:
 
-* **OpenGL ®y¼Ğ**
+* **OpenGL åº§æ¨™**
 
-¨Ï¥Î¥k¤â®y¼Ğ¨t¡C(Cocos2d-x©³¼h±Ä¥ÎOpenGLÃ¸»s)
+ä½¿ç”¨å³æ‰‹åº§æ¨™ç³»ã€‚(Cocos2d-xåº•å±¤æ¡ç”¨OpenGLç¹ªè£½)
 
-* **UI ®y¼Ğ**
+* **UI åº§æ¨™**
 
-¤]ºÙ¬°«Ì¹õ®y¼Ğ¨t²Î¡A­ìÂI¦b¥ª¤W¨¤¡A¦V¥k¬°x¥¿¡A¦V¤U¬°y¥¿¡A
-¦bÄ²±±¨Æ¥ó©Î¬Y¨Ç®É­Ô·|¥Î¨ì¡C
+ä¹Ÿç¨±ç‚ºå±å¹•åº§æ¨™ç³»çµ±ï¼ŒåŸé»åœ¨å·¦ä¸Šè§’ï¼Œå‘å³ç‚ºxæ­£ï¼Œå‘ä¸‹ç‚ºyæ­£ï¼Œ
+åœ¨è§¸æ§äº‹ä»¶æˆ–æŸäº›æ™‚å€™æœƒç”¨åˆ°ã€‚
 
-OpenGL ©M UI ®y¼Ğ¤]¦³Âà´«ªº function¡C
+OpenGL å’Œ UI åº§æ¨™ä¹Ÿæœ‰è½‰æ›çš„ functionã€‚
 
-* **¥@¬É®y¼Ğ©M¬Û¹ï®y¼Ğ**
+* **ä¸–ç•Œåº§æ¨™å’Œç›¸å°åº§æ¨™**
 
-¤]¦³¬İ¨ì¬Û¹ï®y¼Ğ¤S¥s°µ¥»¦a®y¼Ğ¡B¼Ò«¬®y¼Ğ¡A¤j­P¤Wªº²z¸Ñ¬O¥@¬É®y¼Ğ¬°µ´¹ï¦ì¸m¡A¦Ó¬Û¹ï®y¼Ğ«h¬O¥H¥t¤@Nodeª«¥ó¬°°ò·Ç¡A
-¨âªÌ¤¤¤S¤À¬°¬O¤£¬O¥HAnchorPoint¬°°ò·Ç¡A©È§Ú»{ª¾¦³¿ù¡A¸Ô²Ó¥i¦A¥hgoogle¡C
+ä¹Ÿæœ‰çœ‹åˆ°ç›¸å°åº§æ¨™åˆå«åšæœ¬åœ°åº§æ¨™ã€æ¨¡å‹åº§æ¨™ï¼Œå¤§è‡´ä¸Šçš„ç†è§£æ˜¯ä¸–ç•Œåº§æ¨™ç‚ºçµ•å°ä½ç½®ï¼Œè€Œç›¸å°åº§æ¨™å‰‡æ˜¯ä»¥å¦ä¸€Nodeç‰©ä»¶ç‚ºåŸºæº–ï¼Œ
+å…©è€…ä¸­åˆåˆ†ç‚ºæ˜¯ä¸æ˜¯ä»¥AnchorPointç‚ºåŸºæº–ï¼Œæ€•æˆ‘èªçŸ¥æœ‰éŒ¯ï¼Œè©³ç´°å¯å†å»googleã€‚
 
-**Âà´«ªº¤èªk**
+**è½‰æ›çš„æ–¹æ³•**
 
-³o³¡¤Àªá¤F¤£¤Ö®É¶¡¬İ¨Ò¤l©M²z¸Ñ¡AÁöµMÁÙ¦³ÂI¤£ª¾©Ò¥H...
-ª½±µ¥Î¨Ò¤l¨Ó»¡©ú:
+é€™éƒ¨åˆ†èŠ±äº†ä¸å°‘æ™‚é–“çœ‹ä¾‹å­å’Œç†è§£ï¼Œé›–ç„¶é‚„æœ‰é»ä¸çŸ¥æ‰€ä»¥...
+ç›´æ¥ç”¨ä¾‹å­ä¾†èªªæ˜:
 
-©xºô¨Ò¤l:
+å®˜ç¶²ä¾‹å­:
 
 	Sprite *sprite1 = Sprite::create("CloseNormal.png");
 	sprite1->setPosition(Vec2(20,40));
@@ -132,98 +132,98 @@ OpenGL ©M UI ®y¼Ğ¤]¦³Âà´«ªº function¡C
 	log("position = (%f,%f)",point3.x,point3.y);
 	log("position = (%f,%f)",point4.x,point4.y);
 	
-µ²ªG:
+çµæœ:
 	
 	position = (-25.000000,-60.000000)
 	position = (15.000000,20.000000)
 	position = (-25.000000,-60.000000)
 	position = (15.000000,20.000000)
 	
-convertToNodeSpace: ±N¥@¬É®y¼ĞÂà¬°¬Û¹ï®y¼Ğ¡AÂà´«¤è¦¡: **¥Hsprite1ªº¥ª¤U¨¤¬°­ìÂI**¡A­«·s­pºâ·sªº®y¼Ğ¡C
+convertToNodeSpace: å°‡ä¸–ç•Œåº§æ¨™è½‰ç‚ºç›¸å°åº§æ¨™ï¼Œè½‰æ›æ–¹å¼: **ä»¥sprite1çš„å·¦ä¸‹è§’ç‚ºåŸé»**ï¼Œé‡æ–°è¨ˆç®—æ–°çš„åº§æ¨™ã€‚
 
-convertToWorldSpace: ±Nsprite2ªº¦ì¸m®y¼ĞÂà¬°¥@¬É®y¼Ğ¡AÂà´«¤è¦¡: sprite1ªº¦ì¸m¤£ÅÜ¡A¥@¬É®y¼Ğªº®y¼Ğ¶b¤]¤£ÅÜ¡A
-**¥Hsprite1ªº¥ª¤U¨¤³»ÂI¦A«Ø¥ß¤@­Ó·sªº®y¼Ğ¨t(¥»¦a®y¼Ğ)¡A±Nsprite2°²³]©ñ¸m¨ì·s«Øªº³o­Ó®y¼Ğ¨t(®y¼Ğ¤£ÅÜ)¡AµM«á¥H­ì¨Óªº¥@¬É®y¼Ğ¬°°Ñ¦Ò­«·s­pºâsprite2ªº¦ì¸m**¡C
+convertToWorldSpace: å°‡sprite2çš„ä½ç½®åº§æ¨™è½‰ç‚ºä¸–ç•Œåº§æ¨™ï¼Œè½‰æ›æ–¹å¼: sprite1çš„ä½ç½®ä¸è®Šï¼Œä¸–ç•Œåº§æ¨™çš„åº§æ¨™è»¸ä¹Ÿä¸è®Šï¼Œ
+**ä»¥sprite1çš„å·¦ä¸‹è§’é ‚é»å†å»ºç«‹ä¸€å€‹æ–°çš„åº§æ¨™ç³»(æœ¬åœ°åº§æ¨™)ï¼Œå°‡sprite2å‡è¨­æ”¾ç½®åˆ°æ–°å»ºçš„é€™å€‹åº§æ¨™ç³»(åº§æ¨™ä¸è®Š)ï¼Œç„¶å¾Œä»¥åŸä¾†çš„ä¸–ç•Œåº§æ¨™ç‚ºåƒè€ƒé‡æ–°è¨ˆç®—sprite2çš„ä½ç½®**ã€‚
 
-convertToNodeSpaceAR: ±N¥@¬É®y¼ĞÂà¬°¬Û¹ï®y¼Ğ¡AÂà´«¤è¦¡: **¥Hsprite1ªºÁãÂI¬°­ìÂI**¡A­«·s­pºâ·sªº®y¼Ğ¡C
+convertToNodeSpaceAR: å°‡ä¸–ç•Œåº§æ¨™è½‰ç‚ºç›¸å°åº§æ¨™ï¼Œè½‰æ›æ–¹å¼: **ä»¥sprite1çš„éŒ¨é»ç‚ºåŸé»**ï¼Œé‡æ–°è¨ˆç®—æ–°çš„åº§æ¨™ã€‚
 
-convertToWorldSpaceAR: ±Nsprite2ªº¦ì¸m®y¼ĞÂà¬°¥@¬É®y¼Ğ¡AÂà´«¤è¦¡: sprite1ªº¦ì¸m¤£ÅÜ¡A¥@¬É®y¼Ğªº®y¼Ğ¶b¤]¤£ÅÜ¡A
-**¥Hsprite1ªºÁãÂI¦A«Ø¥ß¤@­Ó·sªº®y¼Ğ¨t(¥»¦a®y¼Ğ)¡A±Nsprite2°²³]©ñ¸m¨ì·s«Øªº³o­Ó®y¼Ğ¨t(®y¼Ğ¤£ÅÜ)¡AµM«á¥H­ì¨Óªº¥@¬É®y¼Ğ¬°°Ñ¦Ò­«·s­pºâsprite2ªº¦ì¸m**¡C
+convertToWorldSpaceAR: å°‡sprite2çš„ä½ç½®åº§æ¨™è½‰ç‚ºä¸–ç•Œåº§æ¨™ï¼Œè½‰æ›æ–¹å¼: sprite1çš„ä½ç½®ä¸è®Šï¼Œä¸–ç•Œåº§æ¨™çš„åº§æ¨™è»¸ä¹Ÿä¸è®Šï¼Œ
+**ä»¥sprite1çš„éŒ¨é»å†å»ºç«‹ä¸€å€‹æ–°çš„åº§æ¨™ç³»(æœ¬åœ°åº§æ¨™)ï¼Œå°‡sprite2å‡è¨­æ”¾ç½®åˆ°æ–°å»ºçš„é€™å€‹åº§æ¨™ç³»(åº§æ¨™ä¸è®Š)ï¼Œç„¶å¾Œä»¥åŸä¾†çš„ä¸–ç•Œåº§æ¨™ç‚ºåƒè€ƒé‡æ–°è¨ˆç®—sprite2çš„ä½ç½®**ã€‚
    
 <h2 id="log">Log</h2>
 [vsLog]:resource/logPosition.jpg
-¥i¥H¦bdebugªº®É­Ô¨Ï¥Î¡Aº¡¤è«Kªº¡AÀ³¸Ó¬O¥i¥H¿é¥X¨ìconsole¤W¡A¤£¹LÁÙ¤£¾å±o«ç¥Î¡C
+å¯ä»¥åœ¨debugçš„æ™‚å€™ä½¿ç”¨ï¼Œæ»¿æ–¹ä¾¿çš„ï¼Œæ‡‰è©²æ˜¯å¯ä»¥è¼¸å‡ºåˆ°consoleä¸Šï¼Œä¸éé‚„ä¸æ›‰å¾—æ€ç”¨ã€‚
 
 `log("%s update %d ",__TIME__, num++);`
 
-¿é¥Xµ²ªG:
+è¼¸å‡ºçµæœ:
 
 ![vs-log][vsLog]
 
-<h2 id="string">¦r¦ê</h2>
+<h2 id="string">å­—ä¸²</h2>
 
-°£¤FC¤¤¨Ï¥Îªº`char *` ©M C++ ªº`std::string`¡A¦bcocos2d-x¸ÌÁÙ¦³¤@ºØ`cocos2d-x::__String`¡C
+é™¤äº†Cä¸­ä½¿ç”¨çš„`char *` å’Œ C++ çš„`std::string`ï¼Œåœ¨cocos2d-xè£¡é‚„æœ‰ä¸€ç¨®`cocos2d-x::__String`ã€‚
 
-°²³]¨Ï¥Î`std::string *str`´N­n·f°tnew¨Ó¨Ï¥Î¡A¤£¨Ï¥Î®É¶·delete(©Î¬O§Q¥Îsmart pointer)¡C
+å‡è¨­ä½¿ç”¨`std::string *str`å°±è¦æ­é…newä¾†ä½¿ç”¨ï¼Œä¸ä½¿ç”¨æ™‚é ˆdelete(æˆ–æ˜¯åˆ©ç”¨smart pointer)ã€‚
 
-cocos2d-x::__String¥i¥H§Q¥Î`create`©M`createWithFormat`¡A
-«h¤£¥ÎºŞ²z°O¾ĞÅéªºÄÀ©ñ¡Ae.g.
+cocos2d-x::__Stringå¯ä»¥åˆ©ç”¨`create`å’Œ`createWithFormat`ï¼Œ
+å‰‡ä¸ç”¨ç®¡ç†è¨˜æ†¶é«”çš„é‡‹æ”¾ï¼Œe.g.
 
 	__String *str1(__String::create("HelloWorld!"));
 	__String *str2(__String::createWithFormat("%d %s",123,"HelloWorld"));
 	
-¦Ó¦b³o¤TºØ¦r¦ê¤¤¤]¦³¤¬¬ÛÂà´«ªºfunction¡A´N¤£¦A¸Ô²Ó»¡©ú¤F¡C
+è€Œåœ¨é€™ä¸‰ç¨®å­—ä¸²ä¸­ä¹Ÿæœ‰äº’ç›¸è½‰æ›çš„functionï¼Œå°±ä¸å†è©³ç´°èªªæ˜äº†ã€‚
 
-<h2 id="label">¼ĞÅÒ</h2>
+<h2 id="label">æ¨™ç±¤</h2>
 
-¦b¹CÀ¸¤¤¦p­nÅã¥Ü¤å¦r¥i¥H§Q¥Î¼ĞÅÒ¡A¤]´N¬OLabel¡A¹³¬O[HelloWorld](#helloWorld)¤¤ªº¹Ï¤ù¤º¡A¤W¤è¤@¦æHelloWorld¡C
+åœ¨éŠæˆ²ä¸­å¦‚è¦é¡¯ç¤ºæ–‡å­—å¯ä»¥åˆ©ç”¨æ¨™ç±¤ï¼Œä¹Ÿå°±æ˜¯Labelï¼Œåƒæ˜¯[HelloWorld](#helloWorld)ä¸­çš„åœ–ç‰‡å…§ï¼Œä¸Šæ–¹ä¸€è¡ŒHelloWorldã€‚
 
-¦bcocos2d-x 2¤º¦³LabelTTF,LabelAtlas,LabelBMFont¤TºØclass¡A³o¸Ì¤¶²Ğcocos2d-x 3.x¤¤·sªºclass Label¡C
+åœ¨cocos2d-x 2å…§æœ‰LabelTTF,LabelAtlas,LabelBMFontä¸‰ç¨®classï¼Œé€™è£¡ä»‹ç´¹cocos2d-x 3.xä¸­æ–°çš„class Labelã€‚
 
-* **¨t²Î­ì¥Í¦rÅé**
+* **ç³»çµ±åŸç”Ÿå­—é«”**
 
 		Label* Label::createWithSystemFont(
-		const std::string& text,                                    //¦r¦ê¤º®e
-		const std::string& font, 									//¦rÅé
-		float fontSize, 											//¦rÅé¤j¤p				
-		const Size& dimensions /* = Size::ZERO */,  				//Label¦b¿Ã¹õ¤W¦ûªº¤j¤p
-		TextHAlignment hAlignment /* = TextHAlignment::LEFT */, 	//¤ô¥­¹ï»ô¤è¦¡
-		TextVAlignment vAlignment /* = TextVAlignment::TOP */		//««ª½¹ï»ô¤è¦¡
+		const std::string& text,                                    //å­—ä¸²å…§å®¹
+		const std::string& font, 									//å­—é«”
+		float fontSize, 											//å­—é«”å¤§å°				
+		const Size& dimensions /* = Size::ZERO */,  				//Labelåœ¨è¢å¹•ä¸Šä½”çš„å¤§å°
+		TextHAlignment hAlignment /* = TextHAlignment::LEFT */, 	//æ°´å¹³å°é½Šæ–¹å¼
+		TextVAlignment vAlignment /* = TextVAlignment::TOP */		//å‚ç›´å°é½Šæ–¹å¼
 		)
 		
 * **TTF**
 
-	¥¿±`³Ğ«Ø:
+	æ­£å¸¸å‰µå»º:
 
 		Label* Label::createWithTTF(
 		const std::string& text, 
-		const std::string& fontFile, 								//¦rÅéÀÉ®×(*.ttf)
+		const std::string& fontFile, 								//å­—é«”æª”æ¡ˆ(*.ttf)
 		float fontSize, 
 		const Size& dimensions /* = Size::ZERO */, 
 		TextHAlignment hAlignment /* = TextHAlignment::LEFT */, 
 		TextVAlignment vAlignment /* = TextVAlignment::TOP */
 		)
 
-	¨Ï¥ÎTTFConfig:
+	ä½¿ç”¨TTFConfig:
 		
 		Label* Label::createWithTTF(
 		const TTFConfig& ttfConfig, 								//TTFConfig		
 		const std::string& text, 
 		TextHAlignment alignment /* = TextHAlignment::CENTER */, 	
-		int maxLineWidth /* = 0 */									//³Ì¤j¦æ¼e¡A¥i¥Î¨Ó³]©w¦Û°Ê´«¦æ
+		int maxLineWidth /* = 0 */									//æœ€å¤§è¡Œå¯¬ï¼Œå¯ç”¨ä¾†è¨­å®šè‡ªå‹•æ›è¡Œ
 		)
 
 	TTFConfig:
 		
 		typedef struct _ttfConfig
 		{
-		std::string fontFilePath;									//¦rÅéÀÉ®×
+		std::string fontFilePath;									//å­—é«”æª”æ¡ˆ
 		int fontSize;											
 
-		GlyphCollection glyphs;										//¦r«¬®w(¦r²Å¶°)
-		const char *customGlyphs;									//¦Û­q¦r«¬®w
+		GlyphCollection glyphs;										//å­—å‹åº«(å­—ç¬¦é›†)
+		const char *customGlyphs;									//è‡ªè¨‚å­—å‹åº«
 		
-		bool distanceFieldEnabled;									//²z¸Ñ¬° ¦rÅé¬O§_ºò´ê
-		int outlineSize;											//¦r«¬´yÃä
+		bool distanceFieldEnabled;									//ç†è§£ç‚º å­—é«”æ˜¯å¦ç·Šæ¹Š
+		int outlineSize;											//å­—å‹æé‚Š
 
 		_ttfConfig(const char* filePath = "",
 		int size = 12, 
@@ -255,114 +255,114 @@ e.g.
 	ttf.outlineSize = 4;
 	auto label2(Label::createWithTTF(ttf, "HelloWorld!"));
 
-¦¹¥~ÁÙ¦³ **createWithCharMap** ©M **createWithBMFont**  (¸Ô²Ó¥i¬d¾\document©Î¬İCCLabel.h¤ºªºµù¸Ñ)¡C
+æ­¤å¤–é‚„æœ‰ **createWithCharMap** å’Œ **createWithBMFont**  (è©³ç´°å¯æŸ¥é–±documentæˆ–çœ‹CCLabel.hå…§çš„è¨»è§£)ã€‚
 
-createWithCharMapªº¦r«¬¸ê·½¨Ó¦Û*.png(ÁÙ¦³¨ä¥LºØ)¡AÁÙ¶·³]©w¨C­Ó¦r¤¸ªº¼e°ª¡C
+createWithCharMapçš„å­—å‹è³‡æºä¾†è‡ª*.png(é‚„æœ‰å…¶ä»–ç¨®)ï¼Œé‚„é ˆè¨­å®šæ¯å€‹å­—å…ƒçš„å¯¬é«˜ã€‚
 
-¦ÓcreateWithBMFont«h¬O¨Ï¥Î\*.fnt¡A­n¥ı²K¥[¦n¦rÅéÀÉ®×¡A¥]§t¤@­Ó¹Ï¤ù¶°ÀÉ®×(\*.png)©M¦r«¬®y¼ĞÀÉ®×(\*.fnt)¡AÀÉ®×¦WºÙ¶·¬Û¦P¡C
+è€ŒcreateWithBMFontå‰‡æ˜¯ä½¿ç”¨\*.fntï¼Œè¦å…ˆæ·»åŠ å¥½å­—é«”æª”æ¡ˆï¼ŒåŒ…å«ä¸€å€‹åœ–ç‰‡é›†æª”æ¡ˆ(\*.png)å’Œå­—å‹åº§æ¨™æª”æ¡ˆ(\*.fnt)ï¼Œæª”æ¡ˆåç¨±é ˆç›¸åŒã€‚
 
-±µµÛLabel¦³¤@¨Ç®ÄªG:
+æ¥è‘—Labelæœ‰ä¸€äº›æ•ˆæœ:
 
-shadow(³±¼v)¡BGlow(¿Ã¥ú)¡BOutLine(´yÃä)
+shadow(é™°å½±)ã€Glow(è¢å…‰)ã€OutLine(æé‚Š)
 
-p.s. OutLine »P Glow »ª¦ü·|°_½Ä¬ğ
+p.s. OutLine èˆ‡ Glow è²Œä¼¼æœƒèµ·è¡çª
 
 e.g.:
 
-	label->enableOutline(Color4B::RED, 4);								//²Ä¤@­Ó°Ñ¼Æ¬°ÃäªºÃC¦â¡A²Ä¤G­Ó¬°¤j¤p
-	label->enableShadow(Color4B(91, 0, 174, 128), Size(3, -10));       	//²Ä¤@­Ó°Ñ¼Æ¬°ÃC¦â¡A²Ä¤G­Ó¬°³±¼vªº¬Û¹ï¦ì¸m(¹ê»Ú§ó§ï¤@¦¸´N¥i¥H©ú¥Õ¤F)
-	label->enableGlow(Color3B::GREEN);									//¿Ã¥ú¬°ºñ¦â	
+	label->enableOutline(Color4B::RED, 4);								//ç¬¬ä¸€å€‹åƒæ•¸ç‚ºé‚Šçš„é¡è‰²ï¼Œç¬¬äºŒå€‹ç‚ºå¤§å°
+	label->enableShadow(Color4B(91, 0, 174, 128), Size(3, -10));       	//ç¬¬ä¸€å€‹åƒæ•¸ç‚ºé¡è‰²ï¼Œç¬¬äºŒå€‹ç‚ºé™°å½±çš„ç›¸å°ä½ç½®(å¯¦éš›æ›´æ”¹ä¸€æ¬¡å°±å¯ä»¥æ˜ç™½äº†)
+	label->enableGlow(Color3B::GREEN);									//è¢å…‰ç‚ºç¶ è‰²	
 
-	label->disableEffect();												//¨ú®ø®ÄªG
+	label->disableEffect();												//å–æ¶ˆæ•ˆæœ
 
-³o¸Ìµy·L¸É¥R¤@¤U±`±`¥Î¨ìªºColor3B,color4B´N®t¦b¦³¨S¦³³z©ú«×¡ARGBA¡AA:255¬°§¹¥ş¤£³z©ú
+é€™è£¡ç¨å¾®è£œå……ä¸€ä¸‹å¸¸å¸¸ç”¨åˆ°çš„Color3B,color4Bå°±å·®åœ¨æœ‰æ²’æœ‰é€æ˜åº¦ï¼ŒRGBAï¼ŒA:255ç‚ºå®Œå…¨ä¸é€æ˜
 
-LabelÁÙ¦³³\¦hªºfunction¥i¨Ï¥Î¨Ò¦p`label->setTextColor(Color4B(255, 0, 0,128))`
+Labelé‚„æœ‰è¨±å¤šçš„functionå¯ä½¿ç”¨ä¾‹å¦‚`label->setTextColor(Color4B(255, 0, 0,128))`
 
-¥i¥H±q[³o¸Ì](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/db/de4/classcocos2d_1_1_label.html)±o¨ì§ó¦h¸ê°T!
+å¯ä»¥å¾[é€™è£¡](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/db/de4/classcocos2d_1_1_label.html)å¾—åˆ°æ›´å¤šè³‡è¨Š!
 
 
-<h2 id="menu">¿ï³æ</h2>
+<h2 id="menu">é¸å–®</h2>
 [menuUml]:resource/menuUml.png
 
 ![menu][menuUml]
 
-¥ıÁ¿¤@¤U¥Ø«eªº²z¸Ñ:
+å…ˆè¬›ä¸€ä¸‹ç›®å‰çš„ç†è§£:
 
-¡uMenu Ä~©Ó¤F Layer¡A¦Ó¿ï³æ¤¤¤S¥]§t¤F¿ï³æ¶µ¥Ø(Node <- MenuItem)¡A©Ò¥H¾Ş§@¤W¡A­n§â MenuItem ¥[¶i Menu¡AMenu ¦A¥[¶i ¤÷¸`ÂI¡C
+ã€ŒMenu ç¹¼æ‰¿äº† Layerï¼Œè€Œé¸å–®ä¸­åˆåŒ…å«äº†é¸å–®é …ç›®(Node <- MenuItem)ï¼Œæ‰€ä»¥æ“ä½œä¸Šï¼Œè¦æŠŠ MenuItem åŠ é€² Menuï¼ŒMenu å†åŠ é€² çˆ¶ç¯€é»ã€‚
 
-¤@­Ó³õ´º¥]§t¦h­Ó¼h¡A¦Ó¼h¤W¤S¦³³\¦hªF¦è(e.g. Sprite¡BMenu¡BLabel...) ¡A³£¬ONode¡AµM«á³o¸ÌªºÃö«Y¤j·§¬O MenuItem ¥[¶i Menu¡AMenu ¦A¥[¶i Layer¡C¡v
+ä¸€å€‹å ´æ™¯åŒ…å«å¤šå€‹å±¤ï¼Œè€Œå±¤ä¸Šåˆæœ‰è¨±å¤šæ±è¥¿(e.g. Spriteã€Menuã€Label...) ï¼Œéƒ½æ˜¯Nodeï¼Œç„¶å¾Œé€™è£¡çš„é—œä¿‚å¤§æ¦‚æ˜¯ MenuItem åŠ é€² Menuï¼ŒMenu å†åŠ é€² Layerã€‚ã€
 		
-[©xºô¤å¥ó](http://www.cocos2d-x.org/docs/manual/framework/native/v3/menu/zh)¤]¦³¤¶²Ğ¡C
+[å®˜ç¶²æ–‡ä»¶](http://www.cocos2d-x.org/docs/manual/framework/native/v3/menu/zh)ä¹Ÿæœ‰ä»‹ç´¹ã€‚
 
-* **¤å¦r¿ï³æ:**
+* **æ–‡å­—é¸å–®:**
 
-MenuItemFont¡BMenuItemAtlasFont¡BMenuItemLabel ¸Ì­±ªº°Ñ¼Æ¥i±qµ{¦¡½Xµù¸Ñ©Î[API¤å¥ó](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)±oª¾¡C
+MenuItemFontã€MenuItemAtlasFontã€MenuItemLabel è£¡é¢çš„åƒæ•¸å¯å¾ç¨‹å¼ç¢¼è¨»è§£æˆ–[APIæ–‡ä»¶](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)å¾—çŸ¥ã€‚
 
-Á|³ÌÂ²³æªº¨Ò¤l:
+èˆ‰æœ€ç°¡å–®çš„ä¾‹å­:
 	
 	MenuItemFont* onItem = MenuItemFont::create("on", CC_CALLBACK_1(HelloWorld::menuItemcallBack1,this));
-	//Menu *menu(Menu::create(onItem, NULL));//°O±oNULL!!
+	//Menu *menu(Menu::create(onItem, NULL));//è¨˜å¾—NULL!!
 	//menu->setPosition(Vec2::ZERO);
 	
 	menu->addChild(onItem);
 	this->addChild(menu,1);
 
-¦b³Ğ«ØMenuItem®É¶·³]©wÂI¿ï«áµo¥Íªº¨Æ¡A¤]´N¬O°Ñ¼Æ¦C¤¤ªºcallback function¡A¦b³o¸Ì§Q¥Îmacro: `CC_CALLBACK_1` ¤¤²£¥Í ¡A`HelloWorld::menuItemcallBack1`«h¬O©Ò¥Î¨ìªºfunction¡A
-·íµM¡A§Ú­Ì»İ­n¦bHelloWorld¤¤¼g¤@­ÓmenuItemcallBack1ªºfunction:
+åœ¨å‰µå»ºMenuItemæ™‚é ˆè¨­å®šé»é¸å¾Œç™¼ç”Ÿçš„äº‹ï¼Œä¹Ÿå°±æ˜¯åƒæ•¸åˆ—ä¸­çš„callback functionï¼Œåœ¨é€™è£¡åˆ©ç”¨macro: `CC_CALLBACK_1` ä¸­ç”¢ç”Ÿ ï¼Œ`HelloWorld::menuItemcallBack1`å‰‡æ˜¯æ‰€ç”¨åˆ°çš„functionï¼Œ
+ç•¶ç„¶ï¼Œæˆ‘å€‘éœ€è¦åœ¨HelloWorldä¸­å¯«ä¸€å€‹menuItemcallBack1çš„function:
 	
 	void menuItemcallBack1(cocos2d::Ref* pSender)
 	{
 	//do something...
 	}
 	
-¦Ü©óCC\_CALLBACK\_1ªº¸Ô²Ó¥Îªk©M¨ä¾l(CC\_CALLBACK\_0 1 2 3)¬İ¤F«Ü¦hÁ¿¸ÑÁÙ¬O¤£¤ÓÀ´¡A²q´ú¬O¸ò°Ñ¼Æ¼Æ¶q¦³Ãö¡A
-«á­±¦pªG¤F¸Ñ¤F¦A»¡©ú¡C
+è‡³æ–¼CC\_CALLBACK\_1çš„è©³ç´°ç”¨æ³•å’Œå…¶é¤˜(CC\_CALLBACK\_0 1 2 3)çœ‹äº†å¾ˆå¤šè¬›è§£é‚„æ˜¯ä¸å¤ªæ‡‚ï¼ŒçŒœæ¸¬æ˜¯è·Ÿåƒæ•¸æ•¸é‡æœ‰é—œï¼Œ
+å¾Œé¢å¦‚æœäº†è§£äº†å†èªªæ˜ã€‚
 
-p.s ©xºô¤å¥ó¤¤¨Ï¥Îªº¤èªk¬OLambda¹Bºâ¦¡¡C
+p.s å®˜ç¶²æ–‡ä»¶ä¸­ä½¿ç”¨çš„æ–¹æ³•æ˜¯Lambdaé‹ç®—å¼ã€‚
 
-* **ºëÆF¿ï³æ**(Sprite)
+* **ç²¾éˆé¸å–®**(Sprite)
 
-ºëÆF¿ï³æªº¿ï³æ¶µ¥ØÃş§O¬OMenuItemSprite¡A¨ä¤¤ÁÙ¦³¤@­Ó­l¥ÍÃş§O¬°MenuItemImage(¹Ï¤ù¿ï³æ)¡C
+ç²¾éˆé¸å–®çš„é¸å–®é …ç›®é¡åˆ¥æ˜¯MenuItemSpriteï¼Œå…¶ä¸­é‚„æœ‰ä¸€å€‹è¡ç”Ÿé¡åˆ¥ç‚ºMenuItemImage(åœ–ç‰‡é¸å–®)ã€‚
 
-¨Ï¥ÎMenuItemSprite®É¡A­n¥ı«Ø¥ß±ı¨Ï¥ÎªººëÆF(e.g. `Sprite *normalSprite = Sprite::create("menu/normal.png")`)
+ä½¿ç”¨MenuItemSpriteæ™‚ï¼Œè¦å…ˆå»ºç«‹æ¬²ä½¿ç”¨çš„ç²¾éˆ(e.g. `Sprite *normalSprite = Sprite::create("menu/normal.png")`)
 
 e.g.
 
 	MenuItemSprite * MenuItemSprite::create(
-	Node *normalSprite,					//¶µ¥Ø¥¿±`®ÉªººëÆF
-	Node *selectedSprite,				//¶µ¥Ø³Q¿ï¾Ü®ÉªººëÆF
-	Node *disabledSprite,				//¶µ¥Ø¸T¥Î®ÉªººëÆF¡A¥i¬Ù²¤
+	Node *normalSprite,					//é …ç›®æ­£å¸¸æ™‚çš„ç²¾éˆ
+	Node *selectedSprite,				//é …ç›®è¢«é¸æ“‡æ™‚çš„ç²¾éˆ
+	Node *disabledSprite,				//é …ç›®ç¦ç”¨æ™‚çš„ç²¾éˆï¼Œå¯çœç•¥
 	const ccMenuCallback& callback		//callback 
 	)
 	
-	//MenuItemImage«h¬O¥Î¹Ï¤ù³Ğ«Ø
+	//MenuItemImageå‰‡æ˜¯ç”¨åœ–ç‰‡å‰µå»º
 	MenuItemImage * MenuItemImage::create(
 	const std::string& normalImage,
 	const std::string& selectedImage,
 	const std::string& disabledImage
 	)
 	
-* **¤Á´«¿ï³æ**(Toggle)
+* **åˆ‡æ›é¸å–®**(Toggle)
 
-¶}Ãö¿ï³æªºÃş§O¬O MenuItemToggle ¡A¥i¥H¶i¦æ¦hºØª¬ºAªº¤Á´«¡C(¨Ò¦p:Án­µªº¶}Ãö)
+é–‹é—œé¸å–®çš„é¡åˆ¥æ˜¯ MenuItemToggle ï¼Œå¯ä»¥é€²è¡Œå¤šç¨®ç‹€æ…‹çš„åˆ‡æ›ã€‚(ä¾‹å¦‚:è²éŸ³çš„é–‹é—œ)
 
-¨ä¤¤¤@ºØ«Ø¥ß¤è¦¡:
+å…¶ä¸­ä¸€ç¨®å»ºç«‹æ–¹å¼:
 
 	MenuItemToggle * MenuItemToggle::createWithCallback(
-	const ccMenuCallback &callback				//±ı¾Ş§@ªºcallback 
-	, MenuItem* item,							//¶i¦æ¤Á´«ªºMenuItem
+	const ccMenuCallback &callback				//æ¬²æ“ä½œçš„callback 
+	, MenuItem* item,							//é€²è¡Œåˆ‡æ›çš„MenuItem
 	...
 	)
 
-	//©xºô½d¨Ò
+	//å®˜ç¶²ç¯„ä¾‹
 	auto item6 = MenuItemToggle::createWithCallback(
-	[&](Ref*){ log("Toggle touched!");},			//lambda expression ¡A §Ú­Ì¤]¥i¥H¥ÎCC_CALLBACK_1¨Ó°µ
+	[&](Ref*){ log("Toggle touched!");},			//lambda expression ï¼Œ æˆ‘å€‘ä¹Ÿå¯ä»¥ç”¨CC_CALLBACK_1ä¾†åš
 	MenuItemFont::create("On"),						//MenuItem
     MenuItemFont::create("Off"),
 	NULL
 	);
 
-ÁÙ¦³¤@¨ÇMenuªºfunction¤¶²Ğ©M®ÄªG¥i¥H±q©xºô¤å¥ó¤¤¾Ç²ß!
+é‚„æœ‰ä¸€äº›Menuçš„functionä»‹ç´¹å’Œæ•ˆæœå¯ä»¥å¾å®˜ç¶²æ–‡ä»¶ä¸­å­¸ç¿’!
 	
-p.s Ãö©ó¤@¨Ç¥iÅÜ°Ñ¼Æ(`void func(...);`)ªº¥Îªk¥i¥H¦A¦Û¦æ¬d¾\¡C
+p.s é—œæ–¼ä¸€äº›å¯è®Šåƒæ•¸(`void func(...);`)çš„ç”¨æ³•å¯ä»¥å†è‡ªè¡ŒæŸ¥é–±ã€‚
