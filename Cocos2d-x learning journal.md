@@ -17,6 +17,7 @@ Cocos2d-x learning journal
 9. [字串](#string)
 10. [標籤](#label)
 11. [選單](#menu)
+
 - - -
 
 <h2 id="environment">環境準備</h2>
