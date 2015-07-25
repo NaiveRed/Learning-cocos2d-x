@@ -61,6 +61,8 @@ HelloWorldScene.cpp內
 Cocos2d-x採用樹狀結構來管理Scene,Layer,Sprite,Menu...等物件(Node)，
 就不詳細介紹Director,Scene,Layer...等class的架構和類別圖了，詳細可從[這裡](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)查詢!
 
+補充:一般情況下場景只需要一個層，而層需要子類別化，如:HelloWorld.cpp 、 HelloWorld.h ，編寫一個衍生自Layer的類別。
+
 <h2 id="scheduler">計時器</h2>
 
 大致上就是可以對Sprite等物件來進行排程
