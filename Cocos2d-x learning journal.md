@@ -5,6 +5,8 @@ Cocos2d-x learning journal
 
 資源 : [API文件](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)、[官網文件](http://www.cocos2d-x.org/docs/README)
 
+目前使用書籍: 《同時成為iOS/Android開發大師：使用Cocos2d-x及C++》
+
 - - -
 
 1. [環境準備](#environment)
@@ -19,6 +21,7 @@ Cocos2d-x learning journal
 10. [標籤](#label)
 11. [選單](#menu)
 12. [精靈](#sprite)
+13. [場景與層](#sceneAndLayer)
 
 - - -
 
@@ -416,7 +419,7 @@ e.g.
 
 相關remove的函數: `void removeSpriteFrames()` ...
 
-例如:我們可以overwrite HelloWorld的onExit()
+例如:我們可以override HelloWorld的onExit()
 	
 	void HelloWorld::onExit()
 	{
@@ -424,5 +427,71 @@ e.g.
 	SpriteFrameCache::getInstance()->removeSpriteFrames();
 	}
 
+<h2 id="sceneAndLayer">場景與層</h2>
 	
+場景與層的關係為一對多，一個場景有很多層(至少一個)，而場景不需要重新編寫子類別，一般情況下，一個場景需要一個層，而層是需要子類別化的，也就是編寫一個衍生自Layer的類別。
+從這邊也就可以知道，我們能透過 override 層的生命週期function，來處理場景在不同階段的事件，待會會再做說明。
 
+關於切換場景有幾個相關的function:
+`void replaceScene(Scene* scene)`、`void pushScene(Scene* scene)`、`void popScene()`、`void popToRootScene()`
+
+e.g.
+
+	//Cover衍生自Layer
+	auto cover = Cover::createScene();
+	Director::getInstance()->replaceScene(cover);
+	//Director::getInstance()->pushScene(cover);
+	
+	//回到上一個場景
+	Director::getInstance()->popScene();
+	
+我們也可以建立過場動畫:
+
+e.g.
+	
+	auto cover = Cover::createScene();
+	auto transSc = TransitionJumpZoom::create(1.0f,cover);//(持續時間,場景物件)
+	Director::getInstance()->pushScene(tranSc);//非使用場景物件，而是傳過場動畫的物件
+	
+還有許多相關過場動畫，這裡不多作紀錄了。
+
+而上述`void replaceScene(Scene* scene)`、`void pushScene(Scene* scene)`有些不同，使用replace會將目前的場景給釋放，而push會暫停並放入場景的堆疊中。
+在這裡說明一下他的生命週期函數的執行順序。
+
+Layer的生命週期函數(繼承了Node):
+
+	bool init();//初始化
+	void onEnter();//層進入時呼叫
+	void onEnterTransitionDidFinish();//進入層且過場動畫結束時呼叫
+	void onExit();//退出層時呼叫
+	void onExitTransitionDidStart();//退出層且開始過場動畫時呼叫
+	void cleanup();//被清除釋放時呼叫
+	
+以下"->"表示為順序:
+
+場景被啟動時: init() -> onEnter() -> onEnterTransitionDidFinish()
+
+Now為目前場景，pushScene(After): 
+
+After::init() -> Now::onExitTransitionDidStart() -> After::onEnter() -> Now::onExit() -> After::onEnterTransitionDidFinish()
+
+replaceScene(After):
+
+After::init() -> Now::onExitTransitionDidStart() -> After::onEnter() -> Now::onExit() -> After::onEnterTransitionDidFinish() -> Now::cleanup()
+
+Before為先前場景，pop: 
+
+Now::onExitTransitionDidStart() -> Now::onExit() -> Now::cleanup() -> Before::onEnter() -> Before::onEnterTransitionDidFinish()
+
+可以看出push和replace有差在是否cleanup，而pop沒有在init一次之前的場景。
+
+而在使用上我們可以在編寫層的子類別時，對生命週期函數進行override。
+
+e.g.
+	
+	void HelloWorld::onExit()
+	{
+	Layer::onExit()		//記得呼叫父類別的函數
+	SpriteFrameCache::getInstance()->removeSpriteFrames();
+	}
+	
