@@ -4,6 +4,7 @@ Cocos2d-x learning journal
 **NOTE**:這只是我學習Cocos2d-x的紀錄順便學學Markdown，大多是自己的理解和筆記，因此正確性不敢保證，網路上有更好的教學網站!如果內容有錯還煩請告知。
 
 資源 : [API文件](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)、[官網文件](http://www.cocos2d-x.org/docs/README)
+
 - - -
 
 1. [環境準備](#environment)
@@ -17,6 +18,7 @@ Cocos2d-x learning journal
 9. [字串](#string)
 10. [標籤](#label)
 11. [選單](#menu)
+12. [精靈](#sprite)
 
 - - -
 
@@ -60,8 +62,6 @@ HelloWorldScene.cpp內
 
 Cocos2d-x採用樹狀結構來管理Scene,Layer,Sprite,Menu...等物件(Node)，
 就不詳細介紹Director,Scene,Layer...等class的架構和類別圖了，詳細可從[這裡](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)查詢!
-
-補充:一般情況下場景只需要一個層，而層需要子類別化，如:HelloWorld.cpp 、 HelloWorld.h ，編寫一個衍生自Layer的類別。
 
 <h2 id="scheduler">計時器</h2>
 
@@ -369,3 +369,60 @@ e.g.
 還有一些Menu的function介紹和效果可以從官網文件中學習!
 	
 p.s 關於一些可變參數(`void func(...);`)的用法可以再自行查閱。
+
+<h2 id="sprite">精靈</h2>
+
+前面有用到一些精靈，這裡再稍微記一下他的幾個用法。
+
+圖片:
+
+`static Sprite* create(const std::string & filename)`
+
+`static Sprite* create(const std::string & filename,const Rect & rect )`	
+
+紋理:
+
+`static Sprite* createWithTexture(Texture2D * texture)`
+
+`static Sprite* createWithTexture(Texture2D * texture,const Rect & rect,bool rotated = false )`
+
+紋理的`Rect(float x,float y,float width,float height)` ，x、y為紋理圖片的UI座標，而width、height則是所選區域的寬高了。
+
+關於**紋理圖集**(Texture Atlas):
+
+也稱作精靈表(Sprite Sheet)，大致上是把許多小的精靈圖片組合到一張裡面去，我們可以利用工具(如:Zwoptex、TexturePacker)
+產生出紋理圖集檔案(如:png)和紋理圖集座標(plist)。
+
+而除了上面所提到的方法，我們還可以利用**紋理快取**和**精靈影格快取**:
+
+紋理快取(TextureCache):
+e.g.
+
+	Texture2D* cache = Director::getInstance()->getTextureCache()->addImage("texture.png");	
+	Sprite* car = Sprite::create();
+	car->setTexture(cache);
+	car->setTextureRect(Rect(10, 15, 150, 150));
+
+精靈影格快取(SpriteFrameCache):
+e.g.
+
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("SpriteSheet.plist");
+	Sprite* car = Sprite::createWithSpriteFrameName("car.png");
+
+其中car.png的詳細資訊則是在SpriteSheet.plist(一種XML檔案)中。
+當然還有許多建立快取的function可再自行查閱。
+
+此外當不再使用精靈快取後，需要進行移除的動作!
+
+相關remove的函數: `void removeSpriteFrames()` ...
+
+例如:我們可以overwrite HelloWorld的onExit()
+	
+	void HelloWorld::onExit()
+	{
+	Layer::onExit()		//下一章節會提及
+	SpriteFrameCache::getInstance()->removeSpriteFrames();
+	}
+
+	
+
