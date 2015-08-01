@@ -1,11 +1,11 @@
 
 Cocos2d-x learning journal
 =========================
-**NOTE**:這只是我學習Cocos2d-x的紀錄順便學學Markdown，大多是自己的理解和筆記，因此正確性不敢保證，網路上有更好的教學網站!如果內容有錯還煩請告知。
+**NOTE**:這只是我學習Cocos2d-x的紀錄順便學學Markdown，大多是自己的理解和別人教學(網路或書上)的筆記，因此正確性不敢保證，網路上有更好的教學網站!如果內容有錯還煩請告知。
 
 資源 : [API文件](http://www.cocos2d-x.org/reference/native-cpp/V3.2alpha0/index.html)、[官網文件](http://www.cocos2d-x.org/docs/README)
 
-目前使用書籍: 《同時成為iOS/Android開發大師：使用Cocos2d-x及C++》
+目前使用書籍: Google、《同時成為iOS/Android開發大師：使用Cocos2d-x及C++》
 
 - - -
 
@@ -469,17 +469,17 @@ Layer的生命週期函數(繼承了Node):
 	
 以下"->"表示為順序:
 
-場景被啟動時: init() -> onEnter() -> onEnterTransitionDidFinish()
+**場景被啟動時:** init() -> onEnter() -> onEnterTransitionDidFinish()
 
-Now為目前場景，pushScene(After): 
+**Now為目前場景，pushScene(After):**
 
 After::init() -> Now::onExitTransitionDidStart() -> After::onEnter() -> Now::onExit() -> After::onEnterTransitionDidFinish()
 
-replaceScene(After):
+**replaceScene(After):**
 
 After::init() -> Now::onExitTransitionDidStart() -> After::onEnter() -> Now::onExit() -> After::onEnterTransitionDidFinish() -> Now::cleanup()
 
-Before為先前場景，pop: 
+**Before為先前場景，pop:**
 
 Now::onExitTransitionDidStart() -> Now::onExit() -> Now::cleanup() -> Before::onEnter() -> Before::onEnterTransitionDidFinish()
 
